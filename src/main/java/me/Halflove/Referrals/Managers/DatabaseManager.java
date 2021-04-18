@@ -44,7 +44,7 @@ public class DatabaseManager {
         connection = connection;
     }
 
-    //Setup MySQL Database
+    /*//Setup MySQL Database
     public void setupSQLDatabase(){
         //Database information
         String host = "localhost";
@@ -78,16 +78,16 @@ public class DatabaseManager {
         } catch (SQLException exception){
             exception.printStackTrace();
         }
-    }
+    }*/
 
-    public static boolean getHasPlayed(String uuid, boolean type){
+    /*public static boolean getHasPlayed(String uuid, boolean type){
         return false;
-    }
+    }*/
 
     //Method for updating a player's "HasPlayed" value
     public static void updateHasPlayed(UUID uuid,boolean value){
 
-        //Set SQL value
+        /*//Set SQL value
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE UUID SET HasPlayed=? WHERE UUID=?");
             statement.setBoolean(1, value);
@@ -95,7 +95,7 @@ public class DatabaseManager {
             statement.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }
+        }*/
 
         //Set Local value
         getData().set("players."+uuid.toString()+".hasplayed", value);
@@ -105,7 +105,7 @@ public class DatabaseManager {
 
     public static void updateReferrals(UUID uuid,long value){
 
-        //Set SQL value
+        /*//Set SQL value
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE UUID SET Referrals=? WHERE UUID=?");
             //statement.setLong(1, value);
@@ -113,7 +113,7 @@ public class DatabaseManager {
             statement.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }
+        }*/
 
         //Set Local value
         getData().set("players."+uuid.toString()+".referrals", value + getData().getLong("players."+uuid.toString()+".referrals"));
