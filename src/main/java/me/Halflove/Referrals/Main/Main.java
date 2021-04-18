@@ -1,9 +1,7 @@
 package me.Halflove.Referrals.Main;
 
-import me.Halflove.Referrals.Managers.DatabaseManager;
-import me.Halflove.Referrals.Managers.JoinListener;
-import me.Halflove.Referrals.Managers.ReferralCommand;
-import me.Halflove.Referrals.Managers.ReferralGUI;
+import me.Halflove.Referrals.Managers.*;
+import me.Halflove.Referrals.me.Halflove.Referrals.Utils.SignMenuFactory;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -13,8 +11,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
 
     public DatabaseManager database = DatabaseManager.instance;
+    private SignMenuFactory signMenuFactory;
 
     public void onEnable(){
+        ConfirmInviteGUI.signMenuFactory = new SignMenuFactory(this);
         //database.setupSQLDatabase();
         database.setupLocalDatabase((Plugin) this);
         registerCommands();
@@ -24,6 +24,7 @@ public class Main extends JavaPlugin {
     public void registerEvents(){
         Bukkit.getPluginManager().registerEvents((Listener) new ReferralGUI(), (Plugin) this);
         Bukkit.getPluginManager().registerEvents((Listener) new JoinListener(), (Plugin) this);
+        Bukkit.getPluginManager().registerEvents((Listener) new ConfirmInviteGUI(), (Plugin) this);
     }
 
     public void registerCommands(){

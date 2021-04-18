@@ -19,19 +19,7 @@ public class ReferralCommand implements CommandExecutor {
                     ReferralGUI.openGui(player);
                     break;
                 case 1:
-                    if(Bukkit.getPlayer(args[0]) != null){
-                        if(!player.hasPlayedBefore()){
-                            if(!args[0].equals(player.getName())){
-                                ReferralManager.confirmInvitation(player,Bukkit.getPlayer(args[0]));
-                            }else{
-                                player.sendMessage("You can't invite yourself.");
-                            }
-                        }else{
-                            player.sendMessage("You can't do this, you've played before.");
-                        }
-                    }else{
-                        player.sendMessage("Player not online");
-                    }
+                    ReferralManager.confirmInvitation(player,args[0]);
                     break;
             }
         }

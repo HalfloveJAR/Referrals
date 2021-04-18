@@ -11,6 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ReferralGUI implements Listener {
         confirmInviteLore.add("");
         confirmInviteLore.add(ChatColor.translateAlternateColorCodes('&', "&7Click to reward the person"));
         confirmInviteLore.add(ChatColor.translateAlternateColorCodes('&', "&7who invited you."));
-        if(player.hasPlayedBefore()){
+        if(DatabaseManager.hasPlayedBefore(player.getUniqueId())){
             confirmInviteLore.add("");
             confirmInviteLore.add(ChatColor.translateAlternateColorCodes('&', "&cNew Players Only"));
         }
@@ -51,11 +52,21 @@ public class ReferralGUI implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
+        Player player = (Player) event.getWhoClicked();
         if(event.getView().getTitle().equals("Referrals")) {
-            if (!event.getCurrentItem().getType().equals(Material.WRITABLE_BOOK)){
-                //open enter name gui
+            if(event.getCurrentItem() != null) {
+                if(event.getCurrentItem().getType() == Material.WRITABLE_BOOK) {
+                    if(!DatabaseManager.hasPlayedBefore(player.getUniqueId())) {
+                        ConfirmInviteGUI.openConfirmationGUI(player);
+                        event.setCancelled(true);
+                    }else{
+                        player.sendMessage("You can't do this, you've played before.");
+                        event.setCancelled(true);
+                    }
+                }else{
+                    event.setCancelled(true);
+                }
             }
-            event.setCancelled(true);
         }
     }
 
