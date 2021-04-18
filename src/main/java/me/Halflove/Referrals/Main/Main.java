@@ -12,7 +12,7 @@ public class Main extends JavaPlugin {
 
     public void onEnable(){
         database.setupLocalDatabase((Plugin) this);
-        database.setupSQLDatabase();
+        //database.setupSQLDatabase();
     }
 
 }
