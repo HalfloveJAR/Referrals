@@ -1,6 +1,7 @@
 package me.Halflove.Referrals.Main;
 
 import me.Halflove.Referrals.Managers.DatabaseManager;
+import me.Halflove.Referrals.Managers.JoinListener;
 import me.Halflove.Referrals.Managers.ReferralCommand;
 import me.Halflove.Referrals.Managers.ReferralGUI;
 import org.bukkit.Bukkit;
@@ -22,6 +23,7 @@ public class Main extends JavaPlugin {
 
     public void registerEvents(){
         Bukkit.getPluginManager().registerEvents((Listener) new ReferralGUI(), (Plugin) this);
+        Bukkit.getPluginManager().registerEvents((Listener) new JoinListener(), (Plugin) this);
     }
 
     public void registerCommands(){
