@@ -28,10 +28,6 @@ public class ReferralManager {
             player.sendMessage("Player not online");
         }
 
-        if(Bukkit.getOfflinePlayer(target) != null){
-            Bukkit.broadcastMessage("FUCK ME");
-        }
-
     }
 
 }
