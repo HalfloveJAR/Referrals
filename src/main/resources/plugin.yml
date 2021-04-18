@@ -2,3 +2,8 @@ name: Referrals
 author: Halflove
 version: 1.0
 main: me.Halflove.Referrals.Main.Main
+api-version: 1.16
+commands:
+  referrals:
+    aliases: [referral,refer]
+    usage: </Command>
